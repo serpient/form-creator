@@ -76,7 +76,7 @@ class VoyageApplication extends React.Component {
     const formData = window.localStorage.getItem('formData');
     let formDataObject = {};
 
-    if(formData) {
+    if (formData) {
       try {
         formDataObject = JSON.parse(formData);
       } catch (e) {
@@ -88,10 +88,10 @@ class VoyageApplication extends React.Component {
 
     const newState = Object.assign({}, state);
 
-    for( const key in formDataObject) {
+    for (const key in formDataObject) {
       const formElement = formDataObject[key];
 
-      if(formElement.constructor === Array){
+      if (formElement.constructor === Array) {
         newState[key] = new Set(formElement);
       } else {
         newState[key] = formElement;
@@ -190,43 +190,35 @@ class VoyageApplication extends React.Component {
       this.state.application.length === 2 ? { voyage_form } : { voyage_form, new_voyage_user_form },
       submitApplication
     )
-      .then(() => { if (this.state.error === false) {
-        window.localStorage.setItem('formData', '');
-        return this.setState({ success: true });
-      }})
+      .then(() => {
+        if (this.state.error === false) {
+          window.localStorage.setItem('formData', '');
+          return this.setState({ success: true });
+        }
+      })
   }
 
   render() {
+    let { loading, applicationTitle, errorMessage, success, progressBar, application, currentPage } = this.state;
     return (
       <React.Fragment>
-        {this.state.loading ? <Loading /> : null}
-        {this.state.errorMessage !== "" ? <Error goBack={"/voyage"} error={this.state.errorMessage} /> : null}
+        {loading ? <Loading /> : null}
+        {errorMessage !== "" ? <Error goBack={"/voyage/application/1"} error={errorMessage} /> : null}
         <div className="voyage-application-container">
           <div className="voyage-application-title">Voyage Application</div>
           <div className="voyage-application">
-            {this.state.success
+            {
+              success
               ? <SuccessForm />
               : <React.Fragment>
                 <div className="voyage-application-subtitle">
-                  {
-                    this.state.currentPage > 2 ? 'Voyage Application' : this.state.applicationTitle
-                  }
+                  {applicationTitle}
                 </div>
-                {this.state.application.length > 2
-                  ? <div className="new-user-application-notice">
-                    <div className="new-user-application-notice-title">A Notice to Users</div>
-                    <div className="new-user-application-notice-description">
-                      Does the application seem a little long to you? <br /> Don't worry! We promise all of your
-                      answers are critical to your placement in the voyage. Also, the New Users Application
-                      only pops up in your initial Voyage application.
-                  </div>
-                  </div>
-                  : null
-                }
+                {applicationTitle === 'New User Application' && <NoticeToUsers />}
                 <div className="voyage-application-progress">
-                  <div className="voyage-application-progress-bar" style={this.state.progressBar} />
+                  <div className="voyage-application-progress-bar" style={progressBar} />
                 </div>
-                {renderQAs(this.state.application[this.state.currentPage], this.onFormChange, this.state)}
+                {renderQAs(application[currentPage], this.onFormChange, this.state)}
                 <hr className="hline" />
                 <div className="voyage-application-btn-container">
                   {
@@ -236,16 +228,30 @@ class VoyageApplication extends React.Component {
                   }
                   {
                     this.state.currentPage === this.state.application.length - 1
-                      ? <button className="voyage-appliation-btn--green" onClick={e => this.onSubmit(e)}>Submit</button> // mutation component button
+                      ? <button className="voyage-appliation-btn--green" onClick={e => this.onSubmit(e)}>Submit</button>
                       : <button className="voyage-appliation-btn--green" onClick={e => this.goToNextPage(e)}>Next</button>
                   }
                 </div>
-              </React.Fragment>}
+              </React.Fragment>
+            }
           </div>
         </div>
       </React.Fragment>
     );
   }
+}
+
+const NoticeToUsers = () => {
+  return (
+    <div className="new-user-application-notice">
+      <div className="new-user-application-notice-title">A Notice to Users</div>
+      <div className="new-user-application-notice-description">
+        Does the application seem a little long to you? <br /> Don't worry! We promise all of your
+        answers are critical to your placement in the voyage. Also, the New Users Application
+        only pops up in your initial Voyage application.
+      </div>
+    </div>
+  )
 }
 
 export default VoyageApplication;
