@@ -54,7 +54,7 @@ class VoyageApplication extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ id: this.props.match.params.id })
+    this.setState({ id: this.props.match.params.id || 1 })
 
     // as an example, set to new user voyage application
     this.setState({

@@ -8,8 +8,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/voyage/application/:id" component={VoyageApplication} />
-          <Route exact path="/weekly/checkin/:id" component={WeeklyCheckin} />
+          <Route exact path="/" component={VoyageApplication} />
+          <Route exact path="/checkin" component={WeeklyCheckin} />
           <Route path="*" exact component={Missing404Page} />
         </Switch>
       </div>

@@ -26,7 +26,7 @@ class WeeklyCheckin extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ cohort_id: this.props.match.params.id });
+    this.setState({ cohort_id: this.props.match.params.id || 1 });
   }
 
   toggleValueInSet = (set, value) => {
