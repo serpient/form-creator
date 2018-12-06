@@ -16,31 +16,31 @@ export function renderQAs(applicationData, onFormChange, state) {
     let answerComponent;
     switch (setOfQuestionAnswer.type) {
       case 'checkbox':
-        answerComponent = answerCreator_checkbox(setOfQuestionAnswer, onFormChange, state);
+        answerComponent = answerCreator_checkbox_2_column;
         break;
       case 'input':
-        answerComponent = answerCreator_input(setOfQuestionAnswer, onFormChange, state);
+        answerComponent = answerCreator_input;
         break;
       case 'radio':
-        answerComponent = answerCreator_radio(setOfQuestionAnswer, onFormChange, state);
+        answerComponent = answerCreator_radio;
         break;
       case 'dropdown':
-        answerComponent = answerCreator_dropdown(setOfQuestionAnswer, onFormChange, state)
+        answerComponent = answerCreator_dropdown;
         break;
       case 'dropdown-multiple':
-        answerComponent = answerCreator_dropdown_multiple(setOfQuestionAnswer, onFormChange, state)
+        answerComponent = answerCreator_dropdown_multiple;
         break;
       case 'textarea':
-        answerComponent = answerCreator_textarea(setOfQuestionAnswer, onFormChange, state)
+        answerComponent = answerCreator_textarea;
         break;
       case 'checkbox-2-column':
-        answerComponent = answerCreator_checkbox_2_column(setOfQuestionAnswer, onFormChange, state)
+        answerComponent = answerCreator_checkbox_2_column;
         break;
       case 'radio-special-badge':
-        answerComponent = answerCreator_radio_special_badge(setOfQuestionAnswer, onFormChange, state)
+        answerComponent = answerCreator_radio_special_badge;
         break;
       case 'button-3-colors':
-        answerComponent = answerCreator_btn_3_options(setOfQuestionAnswer, onFormChange, state)
+        answerComponent = answerCreator_btn_3_options;
         break;
       default:
         break;
