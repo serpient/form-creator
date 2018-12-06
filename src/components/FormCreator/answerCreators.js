@@ -45,12 +45,13 @@ export function renderQAs(applicationData, onFormChange, state) {
       default:
         break;
     }
+    const { id, question, subtext } = setOfQuestionAnswer;
     return (
-      <div key={'question_' + setOfQuestionAnswer.id} className="voyage-application-QA">
+      <div key={`question_${id}`} className="voyage-application-QA">
         <label className="voyage-application-question">
-          {setOfQuestionAnswer.question}
+          {question}
         </label>
-        {setOfQuestionAnswer.subtext ? <div className="voyage-application-subtext">{setOfQuestionAnswer.subtext}</div> : null}
+        {subtext && <div className="voyage-application-subtext">{subtext}</div>}
         {answerComponent(setOfQuestionAnswer, onFormChange, state)}
       </div>
     )
