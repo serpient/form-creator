@@ -56,7 +56,7 @@ class VoyageApplication extends React.Component {
   componentDidMount() {
     // set voyage ID in state
 
-    this.setState({ id: this.props.match.params.id})
+    this.setState({ id: this.props.match.params.id })
     // if this user has not been part of a voyage before
     // or was rejected before and not been part of a voyage
     let progress = (1 / this.state.application.length) * 100 + '%';
