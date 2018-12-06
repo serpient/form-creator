@@ -54,11 +54,7 @@ class VoyageApplication extends React.Component {
   }
 
   componentDidMount() {
-    // set voyage ID in state
-
     this.setState({ id: this.props.match.params.id })
-    // if this user has not been part of a voyage before
-    // or was rejected before and not been part of a voyage
 
     // as an example, set to new user voyage application
     this.setState({
@@ -68,37 +64,7 @@ class VoyageApplication extends React.Component {
     }, () => {
       let progress = (1 / this.state.application.length) * 100 + '%';
       this.setState({ progressBar: { width: progress } });
-      this.withPersistedFormData(this.state);
     });
-  }
-
-  withPersistedFormData(state) {
-    const formData = window.localStorage.getItem('formData');
-    let formDataObject = {};
-
-    if (formData) {
-      try {
-        formDataObject = JSON.parse(formData);
-      } catch (e) {
-        // Invalid so clear it
-        window.localStorage.setItem('formData', '');
-        return state;
-      }
-    }
-
-    const newState = Object.assign({}, state);
-
-    for (const key in formDataObject) {
-      const formElement = formDataObject[key];
-
-      if (formElement.constructor === Array) {
-        newState[key] = new Set(formElement);
-      } else {
-        newState[key] = formElement;
-      }
-    }
-
-    return newState;
   }
 
   toggleLoading = () => {
@@ -106,7 +72,6 @@ class VoyageApplication extends React.Component {
   }
 
   errorHandling = (err) => {
-    window.localStorage.setItem("formData", JSON.stringify(this.getFormState()));
     this.setState({ error: true, errorMessage: err })
   }
 
@@ -125,17 +90,6 @@ class VoyageApplication extends React.Component {
         this.setState({ [name]: value });
         break;
     }
-  }
-
-  getFormState = () => {
-    const keys = [1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 100, 101, 102, 103, 104, 105];
-    const formState = {}
-
-    keys.forEach(key => {
-      formState[key] = this.state[key];
-    });
-
-    return formState;
   }
 
   goBackAPage = (e) => {
@@ -187,12 +141,11 @@ class VoyageApplication extends React.Component {
     Store.mutations.submitApplication(
       this.toggleLoading,
       this.errorHandling,
-      this.state.application.length === 2 ? { voyage_form } : { voyage_form, new_voyage_user_form },
+      this.state.applicationTitle !== 'New User Application' ? { voyage_form } : { voyage_form, new_voyage_user_form },
       submitApplication
     )
       .then(() => {
         if (this.state.error === false) {
-          window.localStorage.setItem('formData', '');
           return this.setState({ success: true });
         }
       })
