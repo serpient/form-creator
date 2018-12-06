@@ -10,24 +10,18 @@ import "./styles/main.css";
 import Store from './AppGlobalStore';
 import registerServiceWorker from "./registerServiceWorker";
 
-function RenderApp() {
-  // ApolloProvider wraps the root component and provides ApolloClient features
-  // to all child components. Similar to how the redux Provider does the same for state
-  ReactDOM.render(
-    <ApolloProvider client={Store.client}>
-      <BrowserRouter>
-        <ScrollToTop>
-          <App />
-        </ScrollToTop>
-      </BrowserRouter>
-    </ApolloProvider>,
-    document.getElementById("root")
-  );
-}
 
-RenderApp();
-
-
-
+// ApolloProvider wraps the root component and provides ApolloClient features
+// to all child components. Similar to how the redux Provider does the same for state
+ReactDOM.render(
+  <ApolloProvider client={Store.client}>
+    <BrowserRouter>
+      <ScrollToTop>
+        <App />
+      </ScrollToTop>
+    </BrowserRouter>
+  </ApolloProvider>,
+  document.getElementById("root")
+);
 
 registerServiceWorker();
