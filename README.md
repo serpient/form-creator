@@ -6,5 +6,5 @@ This form-creator was parsed from where it was originally written (Chingu repo) 
 git clone https://github.com/serpient/form-creator.git
 npm install
 npm start
-# navigate to either `/` or `/checkin` for form example
+# navigate to either `/` or `/checkin` for form examples
 ```
