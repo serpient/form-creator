@@ -59,21 +59,17 @@ class VoyageApplication extends React.Component {
     this.setState({ id: this.props.match.params.id })
     // if this user has not been part of a voyage before
     // or was rejected before and not been part of a voyage
-    let progress = (1 / this.state.application.length) * 100 + '%';
-    if (Store.state.user && Store.state.user.status !== 'voyage_ready') {
-      this.setState({
-        application: newUserApplication,
-        gql: 'SUBMIT_NEW_USER_VOYAGE_APPLICATION',
-        applicationTitle: 'New User Application'
-      }, () => {
-        progress = (1 / this.state.application.length) * 100 + '%';
-        this.setState({ progressBar: { width: progress } })
-      });
-    } else {
-      this.setState({ progressBar: { width: progress } })
-    }
 
-    this.setState(this.withPersistedFormData(this.state));
+    // as an example, set to new user voyage application
+    this.setState({
+      application: newUserApplication,
+      gql: 'SUBMIT_NEW_USER_VOYAGE_APPLICATION',
+      applicationTitle: 'New User Application'
+    }, () => {
+      let progress = (1 / this.state.application.length) * 100 + '%';
+      this.setState({ progressBar: { width: progress } });
+      this.withPersistedFormData(this.state);
+    });
   }
 
   withPersistedFormData(state) {
