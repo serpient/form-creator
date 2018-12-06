@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { ApolloProvider } from "react-apollo";
 import App from "./App";
 import ScrollToTop from "./ScrollToTop";
@@ -15,11 +15,11 @@ import registerServiceWorker from "./registerServiceWorker";
 // to all child components. Similar to how the redux Provider does the same for state
 ReactDOM.render(
   <ApolloProvider client={Store.client}>
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop>
         <App />
       </ScrollToTop>
-    </BrowserRouter>
+    </HashRouter>
   </ApolloProvider>,
   document.getElementById("root")
 );
