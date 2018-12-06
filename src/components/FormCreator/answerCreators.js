@@ -16,7 +16,7 @@ export function renderQAs(applicationData, onFormChange, state) {
     let answerComponent;
     switch (setOfQuestionAnswer.type) {
       case 'checkbox':
-        answerComponent = answerCreator_checkbox_2_column;
+        answerComponent = answerCreator_checkbox;
         break;
       case 'input':
         answerComponent = answerCreator_input;
