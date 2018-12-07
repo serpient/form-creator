@@ -44,8 +44,7 @@ const weeklyCheckinData = [
  this.state = {
       300: '',
       301: '',
-    }
-  }
+}
 ```
 - onFormChange function, like below:
 ```
