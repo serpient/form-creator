@@ -85,7 +85,7 @@ render() {
 - checkbox
 - input
 - radio
-- dorpdown
+- dropdown
 - dropdown-multiple
 - textarea
 - checkbox-2-column
