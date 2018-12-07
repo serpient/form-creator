@@ -1,7 +1,7 @@
 ### [Live Link Here!](https://serpient.github.io/form-creator/)
 
-## Introduction
-This form-creator was parsed from where it was originally written ([Chingu repo](https://github.com/chingu-x/chingu-frontend/tree/master) / August 2018) so it's easier to see its function. 
+# Introduction
+This form-creator was parsed from where it was originally written ([Chingu repo](https://github.com/chingu-x/chingu-frontend/tree/master) / August 2018 / First Version of FormCreator ) so it's easier to see its function. 
 
 ## Repo setup
 ```
