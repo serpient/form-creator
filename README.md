@@ -10,4 +10,85 @@ npm install
 npm start
 # navigate to either `/` or `/checkin` for form examples
 ```
+## Current Question Types
+- checkbox
+- input
+- radio
+- dorpdown
+- dropdown-multiple
+- textarea
+- checkbox-2-column
+- radio-special-badge
+- button-3-colors
+* additional custom question types can be added
 
+## Using Form Creator
+### Example of array of question objects that the formCreator function takes
+```
+const weeklyCheckinData = [
+    {
+        id: 300,
+        type: 'button-3-colors',
+        question: "How would you rate your team's progress right now?",
+        answers: [
+            {answer: 'Great!', value: 'green', color: '$health-green'}, 
+            {answer: 'Nervous', value: 'yellow', color: '$health-yellow'}, 
+            {answer: 'Trouble Ahead!', value: 'red', color: '$health-red'}, 
+        ]
+    },
+    {
+        id: 301,
+        type: 'textarea',
+        question: 'How did you help push your team forward last week?',
+    },
+]
+
+```
+### Set up React Component
+- React state needs to have keys that match the ids of each question object
+```
+ this.state = {
+      cohort_id: 0,
+      300: '',
+      301: '',
+      loading: false,
+      error: false,
+      errorMessage: '',
+      success: false
+    }
+  }
+```
+- onFormChange function, like below:
+```
+toggleValueInSet = (set, value) => {
+    set.has(value) ? set.delete(value) : set.add(value);
+    return set;
+}
+  
+onFormChange = (e) => {
+    const { name, value, type } = e.currentTarget;
+    console.log(type);
+    switch (type) {
+      case 'checkbox':
+        this.setState({ [name]: this.toggleValueInSet(this.state[name], value) });
+        break;
+      default:
+        this.setState({ [name]: value });
+        break;
+    }
+  }
+
+```
+- you need to handle submitFunction and corresponding error/success cases. 
+
+### Call renderQAs function within the render function
+```
+render() {
+    return (
+      <React.Fragment>
+          {renderQAs(weeklyCheckinData, this.onFormChange, this.state)}
+          <button onClick={e => this.submit(e)} className="weekly-checkin-btn">Submit</button>
+      </React.Fragment>
+    )
+}
+```
