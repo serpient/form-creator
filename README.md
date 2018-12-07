@@ -23,7 +23,7 @@ npm start
 * additional custom question types can be added
 
 ## Using Form Creator
-### Example of array of question objects that the formCreator function takes
+### 1) Setup array of question objects (formdata)
 ```
 const weeklyCheckinData = [
     {
@@ -44,7 +44,7 @@ const weeklyCheckinData = [
 ]
 
 ```
-### Set up React Component
+### 2) Set up React Component
 - React state needs to have keys that match the ids of each question object
 ```
  this.state = {
@@ -75,7 +75,7 @@ onFormChange = (e) => {
 ```
 - you need to add your own submitFunction and corresponding error/success cases. 
 
-### Call renderQAs function within the render function
+### 3) Call renderQAs function within the render function
 ```
 render() {
     return (
