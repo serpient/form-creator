@@ -48,13 +48,8 @@ const weeklyCheckinData = [
 - React state needs to have keys that match the ids of each question object
 ```
  this.state = {
-      cohort_id: 0,
       300: '',
       301: '',
-      loading: false,
-      error: false,
-      errorMessage: '',
-      success: false
     }
   }
 ```
@@ -67,7 +62,6 @@ toggleValueInSet = (set, value) => {
   
 onFormChange = (e) => {
     const { name, value, type } = e.currentTarget;
-    console.log(type);
     switch (type) {
       case 'checkbox':
         this.setState({ [name]: this.toggleValueInSet(this.state[name], value) });
@@ -79,7 +73,7 @@ onFormChange = (e) => {
   }
 
 ```
-- you need to handle submitFunction and corresponding error/success cases. 
+- you need to add your own submitFunction and corresponding error/success cases. 
 
 ### Call renderQAs function within the render function
 ```
