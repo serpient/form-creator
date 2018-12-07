@@ -1,28 +1,22 @@
 ### [Live Link Here!](https://serpient.github.io/form-creator/)
 
 ## Introduction
-This form-creator was parsed from where it was originally written (Chingu repo) so it's easier to see its function. Originally written in August 2018, first draft of the form-creator.
+This form-creator was parsed from where it was originally written ([Chingu repo](https://github.com/chingu-x/chingu-frontend/tree/master) / August 2018) so it's easier to see its function. 
 
-## Load up
+## Repo setup
 ```
 git clone https://github.com/serpient/form-creator.git
 npm install
 npm start
 # navigate to either `/` or `/checkin` for form examples
 ```
-## Current Question Types
-- checkbox
-- input
-- radio
-- dorpdown
-- dropdown-multiple
-- textarea
-- checkbox-2-column
-- radio-special-badge
-- button-3-colors
-* additional custom question types can be added
 
-## Using Form Creator
+## File Locations
+- [formCreator function](https://github.com/serpient/form-creator/tree/master/src/components/FormCreator)
+- [voyage application example](https://github.com/serpient/form-creator/tree/master/src/components/VoyageApplication)
+- [weekly checkin example](https://github.com/serpient/form-creator/tree/master/src/components/WeeklyCheckin)
+
+# Using Form Creator
 ### 1) Setup array of question objects (formdata)
 ```
 const weeklyCheckinData = [
@@ -86,3 +80,15 @@ render() {
     )
 }
 ```
+
+### Current Question Types
+- checkbox
+- input
+- radio
+- dorpdown
+- dropdown-multiple
+- textarea
+- checkbox-2-column
+- radio-special-badge
+- button-3-colors
+* additional custom question types can be added
